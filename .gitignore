@@ -216,3 +216,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ─── Project-specific: Spark ──────────────────────────────
+checkpoints/
+spark-warehouse/
+derby.log
+metastore_db/
+
+# ─── Project-specific: Data (never commit raw/processed data) ──
+data/
+*.parquet
+!sql/**/*.sql
+
+# ─── Project-specific: ML model artifacts ─────────────────
+ml/models/saved/
+ml/models/*.json
+*.pkl
+*.joblib
+
+# ─── Project-specific: Secrets ─────────────────────────────
+config/secrets.py
+*.pem
+
+# ─── Project-specific: Docker overrides ────────────────────
+docker-compose.override.yml
