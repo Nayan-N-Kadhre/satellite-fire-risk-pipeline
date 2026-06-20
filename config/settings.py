@@ -4,7 +4,12 @@ Central configuration for the satellite-fire-risk-pipeline project.
 """
 
 import socket
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 
+# Load environment variables from .env file at project root
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 def get_local_ip() -> str:
     """
@@ -30,7 +35,7 @@ def get_local_ip() -> str:
 # ─── NASA FIRMS API ──────────────────────────────────────────────────────────
 # Get your free MAP_KEY at: https://firms.modaps.eosdis.nasa.gov/api/map_key/
 # Register for NASA Earthdata Login at: https://urs.earthdata.nasa.gov/
-FIRMS_MAP_KEY = "YOUR_MAP_KEY_HERE"
+FIRMS_MAP_KEY = os.getenv("FIRMS_MAP_KEY", "YOUR_MAP_KEY_HERE")
 FIRMS_BASE_URL = "https://firms.modaps.eosdis.nasa.gov/api"
 FIRMS_SOURCES = ["MODIS_NRT", "VIIRS_SNPP_NRT", "VIIRS_NOAA20_NRT"]
 FIRMS_ARCHIVE_PATH = "./data/archive/"
